@@ -15,12 +15,25 @@ namespace RegistrarUsuarios
         public Form1()
         {
             InitializeComponent();
+            txtContrasenha.PasswordChar = '*';
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Clases.CIngresarUsuario CI = new Clases.CIngresarUsuario();
-            CI.login(txtUsuario, txtContrasenha);
+
+            if( CI.login(txtUsuario, txtContrasenha) is true )
+            {
+                this.Hide();
+                Usuarios us = new Usuarios();
+                us.Show();
+                ;
+            }
+            else
+            {
+                MessageBox.Show("Usuario o Contraseña incorrecta");
+            }
+            
         }
     }
 }
